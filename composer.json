@@ -1,0 +1,45 @@
+{
+    "name": "kameli/laravel-mailcoach-sparkpost-feedback",
+    "description": "Process feedback for email campaigns sent using SparkPost",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Daniel Bøndergaard",
+            "email": "db@kameli.dk",
+            "homepage": "https://www.kameli.dk",
+            "role": "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "spatie/laravel-mailcoach": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kameli\\MailcoachSparkpostFeedback\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Kameli\\MailcoachSparkpostFeedback\\MailcoachSparkpostFeedbackServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
