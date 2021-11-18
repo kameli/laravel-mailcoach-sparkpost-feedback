@@ -14,7 +14,7 @@ class ClickEvent extends SparkpostEvent
 
     public function handle(Send $send)
     {
-        $url = Arr::get($this->payload, 'msys.message_event.target_link_url');
+        $url = Arr::get($this->payload, 'msys.track_event.target_link_url');
 
         if (! $url) {
             return;

@@ -39,15 +39,16 @@ class ProcessSparkpostWebhookJob extends ProcessWebhookJob
             return null;
         }
 
-        $sendgridEvent = SparkpostEventFactory::createForPayload($rawEvent);
-        $sendgridEvent->handle($send);
+        $sparkpostEvent = SparkpostEventFactory::createForPayload($rawEvent);
+        $sparkpostEvent->handle($send);
 
         return $rawEvent;
     }
 
     protected function getSend(array $rawEvent): ?Send
     {
-        $transportId = Arr::get($rawEvent, 'msys.message_event.transmission_id');
+        $eventType = array_key_first($rawEvent['msys']);
+        $transportId = Arr::get($rawEvent, "msys.{$eventType}.transmission_id");
 
         if (! $transportId) {
             return null;
