@@ -2,7 +2,6 @@
 
 namespace Kameli\MailcoachSparkpostFeedback;
 
-use Exception;
 use Illuminate\Http\Request;
 use Spatie\WebhookClient\WebhookProcessor;
 
