@@ -10,6 +10,10 @@ class SparkpostSignatureValidator implements SignatureValidator
 {
     public function isValid(Request $request, WebhookConfig $config): bool
     {
+        if ($request->getUser() !== env('SPARKPOST_WEBHOOK_USER') || $request->getPassword() !== env('SPARKPOST_WEBHOOK_PASSWORD')) {
+            throw new Exception('Authentication failed');
+        }
+
         return true;
     }
 }
