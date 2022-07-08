@@ -20,7 +20,7 @@ class StoreTransportMessageId
 
         $messageId = $event->message->getHeaders()->get('Message-ID')->getBodyAsString();
 
-        if ($send = Send::findByTransportMessageId($messageId)) {
+        if ($send = Send::findByTransportMessageId(trim($messageId, '><'))) {
             $transportMessageId = $event->message->getHeaders()->get('X-SparkPost-Transmission-ID')->getBodyAsString();
             $send->storeTransportMessageId($transportMessageId);
         }
