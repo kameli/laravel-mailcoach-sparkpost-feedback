@@ -13,12 +13,16 @@ class StoreTransportMessageId
             return;
         }
 
-        if (! $send = Send::findByTransportMessageId($event->message->getId())) {
+        // Check if mail is tracked by Mailcoach
+        if (! $event->message->getHeaders()->has('Message-ID')) {
             return;
         }
 
-        $transportMessageId = $event->message->getHeaders()->get('X-SparkPost-Transmission-ID')->getFieldBody();
+        $messageId = $event->message->getHeaders()->get('Message-ID')->getBodyAsString();
 
-        $send->storeTransportMessageId($transportMessageId);
+        if ($send = Send::findByTransportMessageId($messageId)) {
+            $transportMessageId = $event->message->getHeaders()->get('X-SparkPost-Transmission-ID')->getBodyAsString();
+            $send->storeTransportMessageId($transportMessageId);
+        }
     }
 }
